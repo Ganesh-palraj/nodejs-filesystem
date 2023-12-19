@@ -1,13 +1,8 @@
 // const express = require("express");
-// import express from "express";
-// const app = express();
+import express from "express";
+const app = express();
 
-// const PORT = 4000;
-// app.get("/", function (request, response) {
-//   response.send("🙋‍♂️, 🌏 🎊✨🤩");
-// })/*  */;
-
-// app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
+const PORT = 4000;
 
 // WEB DEVELOPER TASK
 
@@ -41,19 +36,29 @@ import path from "node:path";
 
 const Current_Timestamp_data = formattedDate + formattedTime;
 
-fs.writeFile("current date-time.txt", Current_Timestamp_data, (err) => {
-  console.log("completed writing!!");
-});
+app.get("/", function (request, response) {
+  response.send("🙋‍♂️, 🌏 🎊✨🤩");
+})/*  */;
 
-//  2. Write API endpoint to retrive the text file in that particular folder
-
-const dirPath = "C:DRIVE C1\vscodeTasksNodeJs tasks\node-task-1";
-
-fs.readdir(dirPath, "utf8", function (err, files) {
-  const targetExtension = ".txt"; // Change to the desired file extension
-  const targetFiles = files.filter((file) => {
-    return path.extname(file).toLowerCase() === targetExtension;
+app.get("/createfile", function (request, response) {
+  fs.writeFile("current date-time.txt", Current_Timestamp_data, (err) => {
+    response.send("completed writing!!");
   });
 
-  console.log(targetFiles); // List of filenames with the specified extension
-});
+  
+})
+
+app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
+
+
+//  2. Write API endpoint to retrive the text file in that particular folder
+// const dirPath = "\vscode\Tasks\NodeJs tasks\node-task-1";
+
+// fs.readdir(dirPath, "utf8", function (err, files) {
+//   const targetExtension = ".txt"; // Change to the desired file extension
+//   const targetFiles = files.filter((file) => {
+//     return path.extname(file).toLowerCase() === targetExtension;
+//   });
+
+//   console.log(targetFiles); // List of filenames with the specified extension
+// });
